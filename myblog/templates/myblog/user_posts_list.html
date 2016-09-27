@@ -1,0 +1,16 @@
+{% extends 'myblog/index.html' %}
+
+{% block container %}
+    {% for post in posts %}
+        <div class="col-md-6 text-left">
+            <a href="{% url 'post_view' post.id %}"><i class="h4">{{ post.post_name }}
+                {% if post.author == user %}
+                    <small>(<a href="{% url 'post_update' post.id %}">edit</a>)</small>
+                {% endif %}
+            </i></a>
+        </div>
+        <div class="col-md-6 text-right">
+            {{ post.pub_date }}
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'myblog/index.html' %}
+
+{% block container %}
+    {% for user in users.all %}
+        <a href="{% url 'user_posts_list' user.id %}" >{{ user.username }}</a>
+    {% endfor %}
+{% endblock %}

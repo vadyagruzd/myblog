@@ -1,0 +1,22 @@
+{% extends 'myblog/index.html' %}
+
+{% block container %}
+
+    <form class="form-horizontal" method="post">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="{{ field.name }}">{{ field.label }}:</label>
+                <div class="col-sm-6">
+                    <input type="{% if field.name == 'password' %}password{% endif %}" name="{{ field.name }}" class="form-control">
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="form-group col-sm-8">
+            <center>
+                <input type="submit" class="btn btn-success" value="Log In"/>
+            </center>
+        </div>
+    </form>
+{% endblock %}

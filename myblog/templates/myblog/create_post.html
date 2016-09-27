@@ -1,0 +1,34 @@
+{% extends 'myblog/index.html' %}
+
+{% block container %}
+    <form action="" method="post" xmlns="http://www.w3.org/1999/html">{% csrf_token %}
+    <div class="form-group">
+        <label class="control-label" for="{{ form.post_name.name }}">Post Name</label>
+        <input type="text" class="form-control" name="{{ form.post_name.name }}"
+            {% if form.post_name.value %} value="{{ form.post_name.value }}" {% endif %}
+        >
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="{{ form.post_text.name }}">Text</label>
+        <textarea class="form-control" rows="20" name="{{ form.post_text.name }}">
+            {% if form.post_text.value %} {{ form.post_text.value }} {% endif %}
+        </textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="
+        {% if form.post_name.value %}
+            Update
+        {% else %}
+            Create
+        {% endif %}
+        " />
+        <input type="checkbox" name="{{ form.is_published.name }}" value="True"
+        {% if form.is_published.value == 1 %}
+            checked
+        {% endif %}
+        >
+        <label class="control-label" for="{{ form.is_published.name }}">Publish</label>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'myblog/index.html' %}
+
+{% block container %}
+    <div class="row">
+    <div class="col-sm-12 text-left">Author: <b>{{ post.author.username }}</b></div>
+    <div class="col-sm-10 text-left h1">
+        {{ post.post_name }}
+        {% if post.author == user %}
+            <small>(<a href="{% url 'post_update' post.id %}">edit</a>)</small>
+        {% endif %}
+    </div>
+    <div class="col-sm-2 text-right">
+        <i>{{ post.pub_date }}</i>
+
+        {% if post.pub_date != post.change_date %}
+            <div><i class="h6">Last changed day:</i></div>
+            <i>{{ post.change_date }}</i>
+        {% endif %}
+    </div>
+    <div class="row text-left col-sm-12">
+        <p>{{ post.post_text }}</p>
+    </div>
+{% endblock %}
